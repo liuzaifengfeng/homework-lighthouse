@@ -1,0 +1,11 @@
+<resources>
+    <style name="Theme.Lighthouse.Base" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#0D1726</item>
+        <item name="android:colorAccent">#6DE2BE</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:statusBarColor">#0D1726</item>
+        <item name="android:navigationBarColor">#0D1726</item>
+    </style>
+    <style name="Theme.Lighthouse" parent="Theme.Lighthouse.Base" />
+</resources>

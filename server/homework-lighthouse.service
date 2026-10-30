@@ -1,0 +1,19 @@
+[Unit]
+Description=Homework Lighthouse isolated test API
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/deploy/homework-lighthouse/app
+Environment=LIGHTHOUSE_DATA=/home/deploy/homework-lighthouse/data
+Environment=LIGHTHOUSE_SECRETS=/home/deploy/homework-lighthouse/data/secrets.json
+Environment=LIGHTHOUSE_SYNC_SECONDS=300
+ExecStart=/home/deploy/homework-lighthouse/venv/bin/python -m uvicorn app:app --host 127.0.0.1 --port 18765 --no-access-log
+Restart=on-failure
+RestartSec=10
+UMask=0077
+NoNewPrivileges=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=default.target

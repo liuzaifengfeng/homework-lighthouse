@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:paddingVertical="6dp">
+    <LinearLayout android:id="@+id/task_one" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+        <TextView android:id="@+id/title_one" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAppearance="@android:style/TextAppearance.Material.Notification.Title" android:maxLines="1" android:ellipsize="end" />
+        <Chronometer android:id="@+id/timer_one" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAppearance="@android:style/TextAppearance.Material.Notification.Title" android:fontFamily="monospace" android:textSize="25sp" android:countDown="true" />
+        <TextView android:id="@+id/detail_one" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAppearance="@android:style/TextAppearance.Material.Notification" />
+    </LinearLayout>
+    <LinearLayout android:id="@+id/task_two" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="10dp">
+        <TextView android:id="@+id/title_two" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAppearance="@android:style/TextAppearance.Material.Notification.Title" android:maxLines="1" android:ellipsize="end" />
+        <Chronometer android:id="@+id/timer_two" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAppearance="@android:style/TextAppearance.Material.Notification.Title" android:fontFamily="monospace" android:textSize="22sp" android:countDown="true" />
+        <TextView android:id="@+id/detail_two" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAppearance="@android:style/TextAppearance.Material.Notification" />
+    </LinearLayout>
+    <TextView android:id="@+id/more_tasks" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:textAppearance="@android:style/TextAppearance.Material.Notification" />
+</LinearLayout>

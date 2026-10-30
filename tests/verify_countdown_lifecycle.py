@@ -1,0 +1,20 @@
+import runpy,re,json,pathlib,time
+project=pathlib.Path(__file__).resolve().parents[1];m=runpy.run_path(str(project/'tests/verify_notifications.py'));out=project/'evidence'; rows=json.loads((out/'countdown-e2e.json').read_text(encoding='utf-8'))
+def record(name):
+ if not any(x['case']==name for x in rows): rows.append({'case':name,'passed':True})
+ (out/'countdown-e2e.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2),encoding='utf-8');print('PASS',name,flush=True)
+def scenario(name,title=None):
+ m['debug']('scenario',name=name)
+ m['wait_for'](lambda:m['cache']().get('scenario')==name,message='cache '+name)
+ if title: return m['wait_for'](lambda:(n if title in (n:=m['notification']()) else None),message='notification '+name)
+ return m['wait_for'](lambda:not m['notification'](),message='cancel '+name)
+a=scenario('urgent','课堂练习');aw=int(re.search(r'\bwhen=(\d+)',a).group(1))
+b=scenario('submitted_one','实验报告');bw=int(re.search(r'\bwhen=(\d+)',b).group(1))
+assert bw>aw,(aw,bw)
+record('提交最近一项后切换到下一截止任务')
+scenario('submitted_all');time.sleep(3);assert not m['notification']();record('全部提交后撤回倒计时通知')
+scenario('urgent','课堂练习');scenario('expired');record('全部截止后撤回通知')
+m['debug']('real')
+m['wait_for'](lambda:'name="demo" value="false"' in m['adb']('shell','run-as',m['PACKAGE'],'cat','shared_prefs/settings.xml'),message='real mode')
+record('退出演示恢复真实任务')
+print('COMPLETE',len(rows),flush=True)
